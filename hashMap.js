@@ -2,20 +2,24 @@ function HashMap() {
   let capacity = 16;
   const loadFactor = 0.75;
   let size = 0;
-  const buckets = new Array(capacity).fill(null).map(() => []);
+  let buckets = new Array(capacity).fill(null).map(() => []);
 
-  function hash(key) {
+  function hash(key, cap = capacity) {
     let hashCode = 0;
     const primeNumber = 31;
 
     for (let i = 0; i < key.length; i++) {
-      hashCode = (primeNumber * hashCode + key.charCodeAt(i)) % capacity;
+      hashCode = (primeNumber * hashCode + key.charCodeAt(i)) % cap;
     }
 
     return hashCode;
   }
 
   function set(key, value) {
+    if ((size + 1) / capacity > loadFactor) {
+      resize();
+    }
+
     const index = hash(key);
     const bucket = buckets[index];
 
@@ -29,6 +33,20 @@ function HashMap() {
 
     bucket.push([key, value]);
     size++;
+  }
+
+  function resize() {
+    capacity *= 2;
+    const newBuckets = new Array(capacity).fill(null).map(() => []);
+
+    for (const bucket of buckets) {
+      for (const [key, value] of bucket) {
+        const index = hash(key, capacity);
+        newBuckets[index].push([key, value]);
+      }
+    }
+
+    buckets = newBuckets;
   }
 
   function get(key) {

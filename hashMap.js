@@ -45,8 +45,22 @@ function HashMap() {
     return null; // Si no se encuentra la clave
   }
 
+  function has(key) {
+    const index = hash(key);
+    const bucket = buckets[index];
+
+    for (let i = 0; i < bucket.length; i++) {
+      if (bucket[i][0] === key) {
+        return true;
+      }
+    }
+
+    return false;
+  }
+
   return {
     set,
     get,
+    has,
   };
 }

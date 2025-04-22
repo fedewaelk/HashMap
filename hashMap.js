@@ -14,4 +14,39 @@ function HashMap() {
 
     return hashCode;
   }
+
+  function set(key, value) {
+    const index = hash(key);
+    const bucket = buckets[index];
+
+    for (let i = 0; i < bucket.length; i++) {
+      const pair = bucket[i];
+      if (pair[0] === key) {
+        pair[1] = value;
+        return;
+      }
+    }
+
+    bucket.push([key, value]);
+    size++;
+  }
+
+  function get(key) {
+    const index = hash(key);
+    const bucket = buckets[index];
+
+    for (let i = 0; i < bucket.length; i++) {
+      const pair = bucket[i];
+      if (pair[0] === key) {
+        return pair[1];
+      }
+    }
+
+    return null; // Si no se encuentra la clave
+  }
+
+  return {
+    set,
+    get,
+  };
 }

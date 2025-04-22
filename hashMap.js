@@ -4,10 +4,14 @@ function HashMap() {
   let size = 0;
   const buckets = new Array(capacity).fill(null).map(() => []);
 
-  return {
-    getCapacity: () => capacity,
-    getLoadFactor: () => loadFactor,
-    getSize: () => size,
-    // Agregar métodos.
-  };
+  function hash(key) {
+    let hashCode = 0;
+
+    const primeNumber = 31;
+    for (let i = 0; i < key.length; i++) {
+      hashCode = primeNumber * hashCode + key.charCodeAt(i);
+    }
+
+    return hashCode % capacity;
+  }
 }

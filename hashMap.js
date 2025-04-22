@@ -73,10 +73,21 @@ function HashMap() {
     return false; // Si no se encuentra la clave
   }
 
+  function length() {
+    return size;
+  }
+
+  function clear() {
+    buckets = new Array(capacity).fill(null).map(() => []);
+    size = 0;
+  }
+
   return {
     set,
     get,
     has,
     remove,
+    length,
+    clear,
   };
 }

@@ -82,6 +82,36 @@ function HashMap() {
     size = 0;
   }
 
+  function keys() {
+    const allKeys = [];
+    for (const bucket of buckets) {
+      for (const pair of bucket) {
+        allKeys.push(pair[0]);
+      }
+    }
+    return allKeys;
+  }
+
+  function values() {
+    const allValues = [];
+    for (const bucket of buckets) {
+      for (const pair of bucket) {
+        allValues.push(pair[1]);
+      }
+    }
+    return allValues;
+  }
+
+  function entries() {
+    const allEntries = [];
+    for (const bucket of buckets) {
+      for (const pair of bucket) {
+        allEntries.push([pair[0], pair[1]]);
+      }
+    }
+    return allEntries;
+  }
+
   return {
     set,
     get,
@@ -89,5 +119,8 @@ function HashMap() {
     remove,
     length,
     clear,
+    keys,
+    values,
+    entries,
   };
 }

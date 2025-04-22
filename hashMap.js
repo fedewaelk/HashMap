@@ -58,9 +58,25 @@ function HashMap() {
     return false;
   }
 
+  function remove(key) {
+    const index = hash(key);
+    const bucket = buckets[index];
+
+    for (let i = 0; i < bucket.length; i++) {
+      if (bucket[i][0] === key) {
+        bucket.splice(i, 1); // Eliminar el par
+        size--;
+        return true;
+      }
+    }
+
+    return false; // Si no se encuentra la clave
+  }
+
   return {
     set,
     get,
     has,
+    remove,
   };
 }

@@ -1,6 +1,6 @@
-function HashMap() {
+export function HashMap() {
   let capacity = 16;
-  const loadFactor = 0.75;
+  let loadFactor = 0.75;
   let size = 0;
   let buckets = new Array(capacity).fill(null).map(() => []);
 

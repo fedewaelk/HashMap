@@ -33,3 +33,35 @@ console.log("jacket:", test.get("jacket")); // "black"
 console.log("before resize:");
 console.log("Length:", test.length()); // 12
 console.log("Capacity:", test.capacity()); // 16
+
+// Hago a los load levels exceder el load factor
+test.set("moon", "silver");
+
+console.log("After resize:");
+console.log("Length:", test.length()); // 13
+console.log("Capacity:", test.capacity()); // 32
+
+//Más nodos sobrescritos
+test.set("frog", "purple");
+test.set("hat", "gray");
+test.set("kite", "blue");
+
+console.log("frog:", test.get("frog")); // "purple"
+console.log("hat:", test.get("hat")); // "gray"
+console.log("kite:", test.get("kite")); // "blue"
+
+console.log(test.get("carrot")); // orange
+console.log(test.get("dinosaur")); // null
+
+console.log("Has hat:", test.has("hat")); // true
+
+test.remove("hat");
+console.log("Has hat:", test.has("hat")); //false
+console.log("Length:", test.length()); // 12
+
+console.log(test.keys());
+console.log(test.values());
+console.log(test.entries());
+
+test.clear();
+console.log("Length:", test.length()); // 0

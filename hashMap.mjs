@@ -20,13 +20,10 @@ export function HashMap() {
   }
 
   function set(key, value) {
-    if ((size + 1) / capacity > loadFactor) {
-      resize();
-    }
-
     const index = hash(key);
     const bucket = buckets[index];
 
+    // Si la clave ya existe, solo actualiza el valor
     for (let i = 0; i < bucket.length; i++) {
       const pair = bucket[i];
       if (pair[0] === key) {
@@ -35,7 +32,13 @@ export function HashMap() {
       }
     }
 
-    bucket.push([key, value]);
+    // Si es nueva clave evalua si hace falta resize
+    if ((size + 1) / capacity > loadFactor) {
+      resize();
+    }
+
+    const newIndex = hash(key);
+    buckets[newIndex].push([key, value]);
     size++;
   }
 

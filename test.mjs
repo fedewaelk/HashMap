@@ -28,3 +28,8 @@ console.log("Same length:", test.length() === originalLength); // true
 console.log("elephant:", test.get("elephant")); // "pink"
 console.log("grape:", test.get("grape")); // "green"
 console.log("jacket:", test.get("jacket")); // "black"
+
+// PRUEBA DE RESIZE
+console.log("before resize:");
+console.log("Length:", test.length()); // 12
+console.log("Capacity:", test.capacity()); // 16

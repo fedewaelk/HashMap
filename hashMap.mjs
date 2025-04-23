@@ -15,6 +15,10 @@ export function HashMap() {
     return hashCode;
   }
 
+  function capacityValue() {
+    return capacity;
+  }
+
   function set(key, value) {
     if ((size + 1) / capacity > loadFactor) {
       resize();
@@ -140,5 +144,6 @@ export function HashMap() {
     keys,
     values,
     entries,
+    capacity: capacityValue,
   };
 }
